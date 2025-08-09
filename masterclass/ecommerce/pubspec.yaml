@@ -1,19 +1,23 @@
 name: ecommerce
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: ^3.8.1
+    sdk: ^3.8.1
 
 dependencies:
-  flutter:
-    sdk: flutter
+    flutter:
+        sdk: flutter
+    google_nav_bar: ^5.0.7
+    provider: ^6.1.5
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^5.0.0
+    flutter_test:
+        sdk: flutter
+    flutter_lints: ^5.0.0
 
 flutter:
-  uses-material-design: true
+    uses-material-design: true
+    assets:
+        - lib/images/
