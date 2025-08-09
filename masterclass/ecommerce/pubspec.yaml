@@ -1,4 +1,4 @@
-name: todo
+name: ecommerce
 description: "A new Flutter project."
 publish_to: 'none'
 version: 0.1.0
@@ -9,9 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_slidable: ^4.0.0
-  hive_flutter: ^1.1.0
-  hive_generator: ^2.0.1
 
 dev_dependencies:
   flutter_test:

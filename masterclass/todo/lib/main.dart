@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todo/pages/to_do_page.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+
+  var box = await Hive.openBox("tasks");
+
   runApp(const MainApp());
 }
 
@@ -9,12 +15,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      home: ToDoPage(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.from(colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)),
     );
   }
 }
