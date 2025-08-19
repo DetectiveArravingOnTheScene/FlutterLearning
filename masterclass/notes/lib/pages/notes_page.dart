@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:notes/components/drawer.dart';
+import 'package:notes/components/note_tile.dart';
 import 'package:notes/models/note.dart';
 import 'package:notes/models/note_database.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +30,9 @@ class _NotesPageState extends State<NotesPage> {
         actions: [
           MaterialButton(
             onPressed: () async {
-              await context.read<NoteDatabase>().addNote(controller.text);
+              await context.read<NoteDatabase>().addNote(
+                controller.text,
+              );
               controller.clear();
               Navigator.pop(context);
             },
@@ -51,7 +56,10 @@ class _NotesPageState extends State<NotesPage> {
         actions: [
           MaterialButton(
             onPressed: () {
-              context.read<NoteDatabase>().updateNote(note.id, controller.text);
+              context.read<NoteDatabase>().updateNote(
+                note.id,
+                controller.text,
+              );
               controller.clear();
               Navigator.pop(context);
             },
@@ -72,32 +80,44 @@ class _NotesPageState extends State<NotesPage> {
     List<Note> notes = db.currentNotes;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Notes")),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNote,
         child: Icon(Icons.add),
       ),
-      body: ListView.builder(
-        itemCount: notes.length,
-        itemBuilder: (context, index) {
-          final note = notes[index];
-          return ListTile(
-            title: Text(note.text),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  onPressed: () => editNote(note),
-                  icon: Icon(Icons.edit),
-                ),
-                IconButton(
-                  onPressed: () => deleteNote(note.id),
-                  icon: Icon(Icons.delete),
-                ),
-              ],
+      drawer: MyDrawer(),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 24.0),
+            child: Text(
+              "Notes",
+              style: GoogleFonts.dmSerifText(
+                fontSize: 48,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
             ),
-          );
-        },
+          ),
+
+          Expanded(
+            child: ListView.builder(
+              itemCount: notes.length,
+              itemBuilder: (context, index) {
+                final note = notes[index];
+                return NoteTile(
+                  text: note.text,
+                  onEdit: () => editNote(note),
+                  onDelete: () => deleteNote(note.id),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
