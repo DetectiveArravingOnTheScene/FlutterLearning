@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1017911570693",
+    "project_id": "auth-ce29d",
+    "storage_bucket": "auth-ce29d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017911570693:android:693825712ea7a6529e076c",
+        "android_client_info": {
+          "package_name": "com.example.auth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_2k6V24gVM8mpkzmnctpA1TQLQMBRcDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
